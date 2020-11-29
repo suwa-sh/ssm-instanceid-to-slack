@@ -1,18 +1,18 @@
 # SSM instanceID to slack
 
-## Overview
+## ■ Overview
 
 ssm-agentから出力されたログから、SSM Session Managerでセッションを開始するリンクを、Slackに通知します。
 
 ![slack_notif](images/slack_notif.jpg)
 
-## Architecture
+## ■ Architecture
 
 ![arch](images/arch.png)
 
-## Install
+## ■ Install
 
-### [Slack App](https://api.slack.com/apps)
+### ● [Slack App](https://api.slack.com/apps)
 
 - OAuth & PermissionsのScope設定
   - Scope
@@ -23,7 +23,7 @@ ssm-agentから出力されたログから、SSM Session Managerでセッショ�
   - OAuth Access Token
   - Bot User OAuth Access Token
 
-### Lambda 関数
+### ● Lambda 関数
 
 - [最新のlambda.zip](https://github.com/suwa-sh/ssm-instanceid-to-slack/releases/latest) をダウンロード
 - [Lambda関数の作成](https://ap-northeast-1.console.aws.amazon.com/lambda/home?region=ap-northeast-1#/create/function)
@@ -40,10 +40,10 @@ ssm-agentから出力されたログから、SSM Session Managerでセッショ�
     - Slack の private channel に通知する場合
       - SLACK_CHANNEL_ID: `private channel ID`
 
-### CloudWatch Logs サブスクリプションフィルタ
+### ● CloudWatch Logs サブスクリプションフィルタ
 
 - [ssm-agent のログが出力される log group](https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logsV2:log-groups).アクション → Lambda サブスクリプションフィルタを作成
   - Lambda 関数: `ssm-instanceid-to-slack`
   - ログの形式: `その他`
-  - サブスクリプションフィルターのパターン: `Starting association polling`
+  - サブスクリプションフィルターのパターン: `Successfully registered the instance with AWS SSM`
     - ssm-agentが接続を開始したときのログメッセージ

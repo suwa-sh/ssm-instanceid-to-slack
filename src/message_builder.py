@@ -53,14 +53,12 @@ class MessageBuilder(object):
 
     @staticmethod
     def instance_id(message):
-        if not 'instanceID' in message:
+        if not 'instance-id' in message:
             return 'NOT_FOUND'
 
-        # "2020-06-25 01:09:46 INFO [instanceID=mi-0f882d1c5b8a854a6] Starting association polling"
-        # "[instanceID=mi-0f882d1c5b8a854a6]"
-        # "mi-0f882d1c5b8a854a6]"
-        # "mi-0f882d1c5b8a854a6"
-        return message.split(' ')[3].split('=')[1].replace(']', '')
+        # 2020-11-27 04:48:28 INFO Successfully registered the instance with AWS SSM using Managed instance-id: mi-0e2980ad2b6026cee
+        return message.split(':')[3].replace(' ', '')
+
 
     @staticmethod
     def path_encode(target):
