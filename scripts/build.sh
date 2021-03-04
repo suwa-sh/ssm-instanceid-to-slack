@@ -12,7 +12,7 @@ dir_script="$(dirname $0)"
 cd "$(cd ${dir_script}; cd ..; pwd)" || exit 1
 
 DIR_BASE="$(pwd)"
-source "${DIR_BASE}/build/setenv"
+source "${DIR_BASE}/scripts/setenv"
 
 readonly PATH_ARCHIVE="${DIR_DIST}/lambda.zip"
 
@@ -37,7 +37,7 @@ if [[ $? -ne 0 ]]; then echo "build failure." >&2; exit 1; fi
 
 
 # test
-"${DIR_BASE}/build/test.sh" "${DIR_DIST}"
+"${DIR_BASE}/scripts/test.sh" "${DIR_DIST}"
 if [[ $? -ne 0 ]]; then echo "build failure." >&2; exit 1; fi
 
 

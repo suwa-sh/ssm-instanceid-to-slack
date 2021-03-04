@@ -12,7 +12,7 @@ dir_script="$(dirname $0)"
 cd "$(cd ${dir_script}; cd ..; pwd)" || exit 1
 
 DIR_BASE="$(pwd)"
-source "${DIR_BASE}/build/setenv"
+source "${DIR_BASE}/scripts/setenv"
 
 
 

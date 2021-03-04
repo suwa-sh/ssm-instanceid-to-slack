@@ -16,9 +16,9 @@ class SlackAdapter(object):
         self.channel_id = channel_id
 
         if self.channel_id is None:
-            res = client.api_call("channels.list", exclude_archived=1)
+            res = client.api_call("conversations.list", exclude_archived=1)
             if 'error' in res:
-                logger.error("{} channels.list error: {}".format(__name__, res['error']))
+                logger.error("{} conversations.list error: {}".format(__name__, res['error']))
                 return
             for ch in res['channels']:
                 if ch['name'] == channel_name:
